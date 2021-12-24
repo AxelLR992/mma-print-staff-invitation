@@ -33,7 +33,11 @@ body {
   text-align: center;
   font-weight: bolder;
   font-size: 30px;
-  margin-top: 15px;
+  margin-top: 30px;
+}
+
+.main-card h1 span {
+  font-size: 25px;
 }
 
 hr {
