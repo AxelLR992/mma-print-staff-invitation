@@ -6,13 +6,13 @@ $data = json_decode($json);
 
 $firstName = htmlspecialchars($data->firstName);
 $lastName = htmlspecialchars($data->lastName);
-$email = htmlspecialchars($data->email);
+$phone = htmlspecialchars($data->phone);
 
 $logoMM = base64_encode(file_get_contents("../assets/images/manhattanmannor-logo.png"));
 $logoRosie = base64_encode(file_get_contents("../assets/images/rosie-logo.png"));
 
 # Save user information to CSV
-$content = $firstName . "," . $lastName . "," . $email . "\r";
+$content = $firstName . "," . $lastName . "," . $phone . "\r";
 $file = "../registeredUsers.csv";
 if (is_file($file)) {
     file_put_contents($file, $content, FILE_APPEND);

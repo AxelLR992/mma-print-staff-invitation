@@ -2,10 +2,25 @@ const guestForm = document.getElementById("guest-form");
 
 guestForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const firstName = document.getElementById("guest-form-first-name").value;
-  const lastName = document.getElementById("guest-form-last-name").value;
-  const email = document.getElementById("guest-form-email").value;
 
+  // Set button to loading mode
+  const submitButton = document.getElementById("submit-button");
+  submitButton.innerHTML = "LOADING...";
+  submitButton.disabled = true;
+
+  const firstName = document
+    .getElementById("guest-form-first-name")
+    .value.toUpperCase();
+  const lastName = document
+    .getElementById("guest-form-last-name")
+    .value.toUpperCase();
+  const phone = document.getElementById("guest-form-phone").value;
+
+  if (
+    !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(phone)
+  ) {
+    return alert("Please input a valid cell phone");
+  }
   fetch("/services/printInvitation.php", {
     method: "POST",
     headers: {
@@ -14,12 +29,14 @@ guestForm.addEventListener("submit", (e) => {
     body: JSON.stringify({
       firstName,
       lastName,
-      email,
+      phone,
     }),
   })
     .then((response) => response.blob())
     .then((blob) => {
       const objectUrl = URL.createObjectURL(blob);
+      submitButton.innerHTML = "ENTER";
+      submitButton.disabled = false;
       window.open(objectUrl);
     });
 });
