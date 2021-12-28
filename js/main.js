@@ -37,6 +37,6 @@ guestForm.addEventListener("submit", (e) => {
       const objectUrl = URL.createObjectURL(blob);
       submitButton.innerHTML = "ENTER";
       submitButton.disabled = false;
-      window.open(objectUrl);
+      window.location.href = objectUrl;
     });
 });
