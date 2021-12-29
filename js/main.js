@@ -34,6 +34,7 @@ guestForm.addEventListener("submit", (e) => {
   })
     .then((response) => response.blob())
     .then((blob) => {
+      blob.type = "application/pdf";
       const objectUrl = URL.createObjectURL(blob);
       submitButton.innerHTML = "ENTER";
       submitButton.disabled = false;
